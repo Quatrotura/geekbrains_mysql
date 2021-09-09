@@ -1,0 +1,4 @@
+➜  ~ git:(master) ✗ mysqldump --where='true limit 100' mysql help_keyword > /users/syakubov/desktop/programming/geekbrains/mysql/keywords_100.sql
+➜  ~ git:(master) ✗ cd /users/syakubov/desktop/programming/geekbrains/mysql/
+➜  mysql git:(master) ✗ ls
+example_backedup.sql homeworks            internet_shop.sql    keywords_100.sql
