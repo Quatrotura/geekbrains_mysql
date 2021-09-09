@@ -1,0 +1,185 @@
+# Урок 2. Задание 1.
+# Установите СУБД MySQL.
+# Создайте в домашней директории файл .my.cnf, задав в нем логин и пароль, 
+# который указывался при установке.
+
+
+
+SYakubov@192 ~ % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0,01 sec)
+
+mysql> exit
+Bye
+SYakubov@192 ~ % ls -la
+total 2920
+drwxr-xr-x   56 SYakubov  staff     1792  8 сен 20:14 .
+drwxr-xr-x    7 root      admin      224  1 янв  2020 ..
+-r--------    1 SYakubov  staff        8 13 мар  2017 .CFUserTextEncoding
+-rw-r--r--@   1 SYakubov  staff    34820  8 сен 15:17 .DS_Store
+drwx------    8 SYakubov  staff      256  8 сен 20:04 .Trash
+drwxr-xr-x   15 SYakubov  staff      480  8 сен 15:28 .atom
+-rw-------@   1 SYakubov  staff    11056 29 май 13:06 .bash_history
+-rw-r--r--@   1 SYakubov  staff      584  7 сен 15:26 .bash_profile
+-rw-r--r--    1 SYakubov  staff     1050  1 дек  2019 .bash_profile.pysave
+drwx------   63 SYakubov  staff     2016 29 май 13:06 .bash_sessions
+drwxr-xr-x    2 SYakubov  staff       64 25 апр 15:27 .conda
+-rw-r--r--    1 SYakubov  staff       40 25 апр 15:27 .condarc
+drwx------    6 SYakubov  staff      192  2 авг 23:55 .config
+drwx------   14 SYakubov  staff      448  8 сен 15:02 .dropbox
+drwxr-xr-x    3 SYakubov  staff       96  2 сен 20:09 .eclipse
+drwxr-xr-x    9 SYakubov  staff      288  2 авг 16:55 .git
+-rw-r--r--    1 SYakubov  staff      205 15 июн 00:46 .gitconfig
+drwxr-xr-x   10 SYakubov  staff      320 20 июн 23:24 .gitkraken
+drwxr-xr-x    4 SYakubov  staff      128 14 янв  2019 .idlerc
+drwxr-xr-x    5 SYakubov  staff      160  1 дек  2019 .ipython
+drwxr-xr-x    3 SYakubov  staff       96  1 дек  2019 .jupyter
+-rw-------    1 SYakubov  staff       30 23 июл 19:41 .lesshst
+-rw-r--r--    1 SYakubov  staff     1471  7 янв  2018 .mailcap
+-rw-r--r--    1 SYakubov  staff     3764  9 янв  2018 .mime.types
+-rw-------    1 SYakubov  staff     2001  8 сен 20:14 .mysql_history
+-rw-------    1 SYakubov  staff      361  3 май 13:42 .node_repl_history
+drwxr-xr-x    6 SYakubov  staff      192  3 май 13:37 .npm
+-rw-------@   1 SYakubov  staff     1404  8 июл 18:39 .python_history
+drwxr-xr-x    3 SYakubov  staff       96 14 июн 23:31 .ssh
+-rw-------    1 SYakubov  staff     5553  7 сен 02:13 .viminfo
+drwxr-xr-x    4 SYakubov  staff      128  8 авг  2020 .vscode
+-rw-r--r--    1 SYakubov  staff    48076 18 авг 14:38 .zcompdump-MacBook Pro — Sergey-5.8
+-rw-r--r--@   1 SYakubov  staff      242  7 сен 15:28 .zprofile
+-rw-------    1 SYakubov  staff    51231  8 сен 20:06 .zsh_history
+drwx------   29 SYakubov  staff      928  8 сен 20:14 .zsh_sessions
+-rw-r--r--@   1 SYakubov  staff     3692 10 июл 01:50 .zshrc.omz-uninstalled-2021-09-08_20-05-58
+drwx------@   5 SYakubov  staff      160 20 фев  2019 Applications
+drwx------@  49 SYakubov  staff     1568  8 сен 20:04 Desktop
+drwx------@ 109 SYakubov  staff     3488 26 авг 21:24 Documents
+drwx------@ 237 SYakubov  staff     7584  8 сен 20:04 Downloads
+drwx------@  31 SYakubov  staff      992 31 май  2020 Dropbox
+drwx------@  41 SYakubov  staff     1312  8 сен 20:03 Google Диск
+drwx------@   6 SYakubov  staff      192  5 янв  2020 Google Диск (svetka.q@gmail.com)
+drwx------   82 SYakubov  staff     2624  2 сен 20:08 Library
+drwx------    7 SYakubov  staff      224  5 янв  2020 Movies
+drwx------    6 SYakubov  staff      192  5 янв  2020 Music
+drwx------   12 SYakubov  staff      384  4 янв  2020 Pictures
+drwxr-xr-x    6 SYakubov  staff      192 13 мар  2017 Public
+drwxr-xr-x    7 SYakubov  staff      224  2 авг 16:22 VirtualBox VMs
+-rw-r--r--@   1 SYakubov  staff       31  7 сен 01:24 hello.sql
+drwx------   14 SYakubov  staff      448 29 май 16:08 iCloud Drive (архив)
+-rw-r--r--    1 SYakubov  staff  1226753  7 сен 16:37 mysql.sql
+drwxr-xr-x  115 SYakubov  staff     3680 29 май 16:08 node_modules
+-rw-r--r--    1 SYakubov  staff    44793 23 окт  2020 package-lock.json
+drwxr-xr-x    2 SYakubov  staff       64 21 июл 00:40 ubuntu
+-rw-r--r--@   1 SYakubov  staff        5 25 сен  2020 xaa
+SYakubov@192 ~ % nano .my.cnf
+SYakubov@192 ~ % cat .my.cnf
+[client]
+user=root
+password=whatdaheck
+SYakubov@192 ~ % ls -la
+total 2928
+drwxr-xr-x   57 SYakubov  staff     1824  8 сен 20:18 .
+drwxr-xr-x    7 root      admin      224  1 янв  2020 ..
+-r--------    1 SYakubov  staff        8 13 мар  2017 .CFUserTextEncoding
+-rw-r--r--@   1 SYakubov  staff    34820  8 сен 15:17 .DS_Store
+drwx------    8 SYakubov  staff      256  8 сен 20:04 .Trash
+drwxr-xr-x   15 SYakubov  staff      480  8 сен 15:28 .atom
+-rw-------@   1 SYakubov  staff    11056 29 май 13:06 .bash_history
+-rw-r--r--@   1 SYakubov  staff      584  7 сен 15:26 .bash_profile
+-rw-r--r--    1 SYakubov  staff     1050  1 дек  2019 .bash_profile.pysave
+drwx------   63 SYakubov  staff     2016 29 май 13:06 .bash_sessions
+drwxr-xr-x    2 SYakubov  staff       64 25 апр 15:27 .conda
+-rw-r--r--    1 SYakubov  staff       40 25 апр 15:27 .condarc
+drwx------    6 SYakubov  staff      192  2 авг 23:55 .config
+drwx------   14 SYakubov  staff      448  8 сен 15:02 .dropbox
+drwxr-xr-x    3 SYakubov  staff       96  2 сен 20:09 .eclipse
+drwxr-xr-x    9 SYakubov  staff      288  2 авг 16:55 .git
+-rw-r--r--    1 SYakubov  staff      205 15 июн 00:46 .gitconfig
+drwxr-xr-x   10 SYakubov  staff      320 20 июн 23:24 .gitkraken
+drwxr-xr-x    4 SYakubov  staff      128 14 янв  2019 .idlerc
+drwxr-xr-x    5 SYakubov  staff      160  1 дек  2019 .ipython
+drwxr-xr-x    3 SYakubov  staff       96  1 дек  2019 .jupyter
+-rw-------    1 SYakubov  staff       30 23 июл 19:41 .lesshst
+-rw-r--r--    1 SYakubov  staff     1471  7 янв  2018 .mailcap
+-rw-r--r--    1 SYakubov  staff     3764  9 янв  2018 .mime.types
+-rw-r--r--    1 SYakubov  staff       39  8 сен 20:18 .my.cnf
+-rw-------    1 SYakubov  staff     2001  8 сен 20:14 .mysql_history
+-rw-------    1 SYakubov  staff      361  3 май 13:42 .node_repl_history
+drwxr-xr-x    6 SYakubov  staff      192  3 май 13:37 .npm
+-rw-------@   1 SYakubov  staff     1404  8 июл 18:39 .python_history
+drwxr-xr-x    3 SYakubov  staff       96 14 июн 23:31 .ssh
+-rw-------    1 SYakubov  staff     5553  7 сен 02:13 .viminfo
+drwxr-xr-x    4 SYakubov  staff      128  8 авг  2020 .vscode
+-rw-r--r--    1 SYakubov  staff    48076 18 авг 14:38 .zcompdump-MacBook Pro — Sergey-5.8
+-rw-r--r--@   1 SYakubov  staff      242  7 сен 15:28 .zprofile
+-rw-------    1 SYakubov  staff    51231  8 сен 20:06 .zsh_history
+drwx------   29 SYakubov  staff      928  8 сен 20:14 .zsh_sessions
+-rw-r--r--@   1 SYakubov  staff     3692 10 июл 01:50 .zshrc.omz-uninstalled-2021-09-08_20-05-58
+drwx------@   5 SYakubov  staff      160 20 фев  2019 Applications
+drwx------@  49 SYakubov  staff     1568  8 сен 20:04 Desktop
+drwx------@ 109 SYakubov  staff     3488 26 авг 21:24 Documents
+drwx------@ 237 SYakubov  staff     7584  8 сен 20:04 Downloads
+drwx------@  31 SYakubov  staff      992 31 май  2020 Dropbox
+drwx------@  41 SYakubov  staff     1312  8 сен 20:03 Google Диск
+drwx------@   6 SYakubov  staff      192  5 янв  2020 Google Диск (svetka.q@gmail.com)
+drwx------   82 SYakubov  staff     2624  2 сен 20:08 Library
+drwx------    7 SYakubov  staff      224  5 янв  2020 Movies
+drwx------    6 SYakubov  staff      192  5 янв  2020 Music
+drwx------   12 SYakubov  staff      384  4 янв  2020 Pictures
+drwxr-xr-x    6 SYakubov  staff      192 13 мар  2017 Public
+drwxr-xr-x    7 SYakubov  staff      224  2 авг 16:22 VirtualBox VMs
+-rw-r--r--@   1 SYakubov  staff       31  7 сен 01:24 hello.sql
+drwx------   14 SYakubov  staff      448 29 май 16:08 iCloud Drive (архив)
+-rw-r--r--    1 SYakubov  staff  1226753  7 сен 16:37 mysql.sql
+drwxr-xr-x  115 SYakubov  staff     3680 29 май 16:08 node_modules
+-rw-r--r--    1 SYakubov  staff    44793 23 окт  2020 package-lock.json
+drwxr-xr-x    2 SYakubov  staff       64 21 июл 00:40 ubuntu
+-rw-r--r--@   1 SYakubov  staff        5 25 сен  2020 xaa
+SYakubov@192 ~ % pwd
+/Users/SYakubov
+SYakubov@192 ~ % mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0,00 sec)
+
+mysql> exit
+Bye
+SYakubov@192 ~ % 
