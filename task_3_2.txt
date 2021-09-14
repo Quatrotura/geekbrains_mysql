@@ -1,0 +1,83 @@
+1) вариант 1:
+
+- не создаем отдельную таблицу постов, т.к. пост может быть частью медиа,
+- слегка модифицируем таблицу media (добавляем name, у body меняем тип на лонгтекст 
+(для постов))
+- для лайков пользователей: в таблице лайков 
+добавляем столбец liked_user и убираем атрибут NOT NULL с media_id 
+(т.к. если лайкнут пользователя, то media_id будет пустым и наоборот)
+
+DROP TABLE IF EXISTS media;
+CREATE TABLE media(
+   	id SERIAL,
+   	media_type_id BIGINT UNSIGNED NOT NULL,
+   	author_id BIGINT UNSIGNED NOT NULL,
+  	name VARCHAR (255),
+	body LONGTEXT,	
+    	filename VARCHAR(255),
+	
+    	size INT,
+    	metadata JSON,
+    	created_at DATETIME DEFAULT NOW(),
+    	updated_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
+
+    	FOREIGN KEY (author_id) REFERENCES users(id),
+    	FOREIGN KEY (media_type_id) REFERENCES media_types(id)
+
+);
+
+DROP TABLE IF EXISTS likes;
+CREATE TABLE likes(
+    	id SERIAL,
+    	liker_id BIGINT UNSIGNED NOT NULL,
+    	media_id BIGINT UNSIGNED,
+	liked_user BIGINT UNSIGNED,
+    	created_at DATETIME DEFAULT NOW(),
+
+
+    	FOREIGN KEY (liker_id) REFERENCES users(id),
+    	FOREIGN KEY (media_id) REFERENCES media(id),
+	FOREIGN KEY (liked_user) REFERENCES users(id)
+
+);
+
+2) Вариант 2. Строго следуем условию домашнего задания и создаем отдельные таблицы:
+
+DROP TABLE IF EXISTS posts;
+CREATE TABLE posts (
+
+	id SERIAL,
+	author_id BIGINT UNSIGNED NOT NULL,
+	name VARCHAR (255) NOT NULL,
+	body LONGTEXT,
+    	created_at DATETIME DEFAULT NOW(),
+    	updated_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
+
+	
+    	FOREIGN KEY (author_id) REFERENCES users(id)		
+);
+
+DROP TABLE IF EXISTS liked_posts;
+CREATE TABLE liked_posts (
+	id SERIAL,
+	liker_id BIGINT UNSIGNED NOT NULL,
+	post_id BIGINT UNSIGNED NOT NULL,
+	created_at DATETIME DEFAULT NOW()
+
+	FOREIGN KEY (liker_id) REFERENCES users(id),
+	FOREIGN KEY (post_id) REFERENCES posts(id)
+	
+);
+
+DROP TABLE IF EXISTS liked_users;
+CREATE TABLE liked_users (
+	
+	id SERIAL,
+	liker_id BIGINT UNSIGNED NOT NULL,
+	liked_user BIGINT UNSIGNED NOT NULL,
+	created_at DATETIME DEFAULT NOW(),
+
+	FOREIGN KEY (liker_id) REFERENCES users(id),
+	FOREIGN KEY (liked_user) REFERENCES users(id)
+
+);
