@@ -74,6 +74,21 @@ INSERT INTO `alias_suppliers` VALUES (1,'Shanghai Textiles',1),(2,'Ningbo Suprem
 UNLOCK TABLES;
 
 --
+-- Temporary view structure for view `balance_amount_for_payment`
+--
+
+DROP TABLE IF EXISTS `balance_amount_for_payment`;
+/*!50001 DROP VIEW IF EXISTS `balance_amount_for_payment`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `balance_amount_for_payment` AS SELECT 
+ 1 AS `style_number`,
+ 1 AS `ordered_amount`,
+ 1 AS `paid_amount`,
+ 1 AS `balance_amount`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `bank_details`
 --
 
@@ -113,7 +128,7 @@ CREATE TABLE `bank_details` (
 
 LOCK TABLES `bank_details` WRITE;
 /*!40000 ALTER TABLE `bank_details` DISABLE KEYS */;
-INSERT INTO `bank_details` VALUES (1,1,'Shanghai Textiles Supplies Co. Ltd.','Mainstreet 2, Road Town, British Virgin Islands',7,'Virgin Trust Bank BVI','Mainstreet 5, Road Town, British Virgin Islands',7,38585904,3040053,'VTBBVI',1,'2021-10-18 01:25:52','2021-10-18 01:25:52'),(2,2,'Shanghai Trading I&E Co. Ltd','Xuehuadadao 23, Shanghai, China',1,'Construction Bank of China','Liujielu 34, Shanghai, China',1,90394984,309393,'CBHSWF',1,'2021-10-18 01:25:52','2021-10-18 01:25:52'),(3,3,'Zeria Tekstil Sanayi ve Dİs Ticaret Ltd Sti','Esenler Sk 1, Istanbul, Turkey ',9,'International Bank of Commerce','Turkoglu 34, Istanbul, Turkey',9,24948943,849398384,'IBCTURK',1,'2021-10-18 01:25:52','2021-10-18 01:25:52'),(4,4,'H&J Outerwear Apparels Co. Ltd','Xihulu 29, Xiamen, China ',4,'Bank of China Xiamen Branch','Shangxiadadao 34, Xiamen, China',4,949403033,94940402,'BOCXMN',1,'2021-10-18 01:25:52','2021-10-18 01:25:52'),(5,5,'Chittagong Minar Industries Co. Ltd','Queens Street 10, Chittagong, Bangladesh',8,'Islamic Bank of Bangladesh','Fortune Road 23, Chittagong, Bangladesh',8,57389393,203948484,'ISBCTG',1,'2021-10-18 01:25:52','2021-10-18 01:25:52'),(6,6,'Shuangfeng Accessories Manufacturing Co. Ltd','Xinguolu 65, Shenzhen, China',2,'Agricultural Bank of China','Zhuyaodadao 84, Shenzhen, China',2,7383943,10984742,'ABCSHZ',2,'2021-10-18 01:25:52','2021-10-18 01:25:52'),(7,7,'Ningbo Supreme Import & Export Co. Ltd','Shijiedadao 84, Ningbo, China',3,'ICBC Ningbo branch','Louhongqiao 29, Ningbo, China',3,8694943,84949384,'ICBCNGB',1,'2021-10-18 01:25:52','2021-10-18 01:25:52'),(8,8,'Shanghai Knitwear Co. Ltd.','Dongfengdadao 13, Shanghai, China',1,'Construction Bank of China','Xidonglu 48, Shanghai, China',1,95958432,50595984,'CBCSHA',2,'2021-10-18 01:25:52','2021-10-18 01:25:52'),(9,9,'Heung Apparels Manufacturing LLC','Minhaseung 34, Busan, Korea',10,'Korean Bank of Trade and Commerce','Bunghaseyong 93, Busan, Korea',10,8478722,84733823,'KBRCBSN',1,'2021-10-18 01:25:52','2021-10-18 01:25:52'),(10,10,'Anhui Dafeng Garments I&E Co. Ltd','Liudalu 98, Shanghai, China',1,'Shanghai Trading Bank','Xinshijielu 23, Shanghai, China',1,57348393,94587362,'STBSHA',2,'2021-10-18 01:25:52','2021-10-18 01:25:52');
+INSERT INTO `bank_details` VALUES (1,1,'Shanghai Textiles Supplies Co. Ltd.','Mainstreet 2, Road Town, British Virgin Islands',7,'Virgin Trust Bank BVI','Mainstreet 5, Road Town, British Virgin Islands',7,38585904,3040053,'VTBBVI',1,'2021-10-20 18:45:20','2021-10-20 18:45:20'),(2,2,'Shanghai Trading I&E Co. Ltd','Xuehuadadao 23, Shanghai, China',1,'Construction Bank of China','Liujielu 34, Shanghai, China',1,90394984,309393,'CBHSWF',1,'2021-10-20 18:45:20','2021-10-20 18:45:20'),(3,3,'Zeria Tekstil Sanayi ve Dİs Ticaret Ltd Sti','Esenler Sk 1, Istanbul, Turkey ',9,'International Bank of Commerce','Turkoglu 34, Istanbul, Turkey',9,24948943,849398384,'IBCTURK',1,'2021-10-20 18:45:20','2021-10-20 18:45:20'),(4,4,'H&J Outerwear Apparels Co. Ltd','Xihulu 29, Xiamen, China ',4,'Bank of China Xiamen Branch','Shangxiadadao 34, Xiamen, China',4,949403033,94940402,'BOCXMN',1,'2021-10-20 18:45:20','2021-10-20 18:45:20'),(5,5,'Chittagong Minar Industries Co. Ltd','Queens Street 10, Chittagong, Bangladesh',8,'Islamic Bank of Bangladesh','Fortune Road 23, Chittagong, Bangladesh',8,57389393,203948484,'ISBCTG',1,'2021-10-20 18:45:20','2021-10-20 18:45:20'),(6,6,'Shuangfeng Accessories Manufacturing Co. Ltd','Xinguolu 65, Shenzhen, China',2,'Agricultural Bank of China','Zhuyaodadao 84, Shenzhen, China',2,7383943,10984742,'ABCSHZ',2,'2021-10-20 18:45:20','2021-10-20 18:45:20'),(7,7,'Ningbo Supreme Import & Export Co. Ltd','Shijiedadao 84, Ningbo, China',3,'ICBC Ningbo branch','Louhongqiao 29, Ningbo, China',3,8694943,84949384,'ICBCNGB',1,'2021-10-20 18:45:20','2021-10-20 18:45:20'),(8,8,'Shanghai Knitwear Co. Ltd.','Dongfengdadao 13, Shanghai, China',1,'Construction Bank of China','Xidonglu 48, Shanghai, China',1,95958432,50595984,'CBCSHA',2,'2021-10-20 18:45:20','2021-10-20 18:45:20'),(9,9,'Heung Apparels Manufacturing LLC','Minhaseung 34, Busan, Korea',10,'Korean Bank of Trade and Commerce','Bunghaseyong 93, Busan, Korea',10,8478722,84733823,'KBRCBSN',1,'2021-10-20 18:45:20','2021-10-20 18:45:20'),(10,10,'Anhui Dafeng Garments I&E Co. Ltd','Liudalu 98, Shanghai, China',1,'Shanghai Trading Bank','Xinshijielu 23, Shanghai, China',1,57348393,94587362,'STBSHA',2,'2021-10-20 18:45:20','2021-10-20 18:45:20');
 /*!40000 ALTER TABLE `bank_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,7 +263,7 @@ CREATE TABLE `contracts` (
 
 LOCK TABLES `contracts` WRITE;
 /*!40000 ALTER TABLE `contracts` DISABLE KEYS */;
-INSERT INTO `contracts` VALUES (1,1,1,'IRR/STS/001/AW22',8,'active',1,1,1,1,2,NULL),(2,1,4,'IRR/STI/002/AW22',8,'active',4,1,8,1,1,NULL),(3,2,7,'IRL/ZTS/003/AW22',8,'active',3,7,2,1,9,NULL),(4,1,10,'IRR/HJO/005/AW22',8,'active',1,4,1,1,3,NULL),(5,1,6,'IRR/CMI/004/AW22',8,'active',1,6,1,1,10,NULL),(6,1,5,'IRR/SAM/006/AW22',8,'active',4,2,1,1,4,NULL),(7,1,2,'IRR/NSI/007/AW21',6,'deactivated',1,3,2,1,9,NULL),(8,1,3,'IRR/SHC/008/AW22',8,'active',4,1,1,1,2,NULL),(9,2,8,'IRL/HEM/010/AW22',8,'active',1,8,8,1,7,15),(10,1,9,'IRR/ADG/012/SS22',7,'on hold',1,1,1,1,1,NULL);
+INSERT INTO `contracts` VALUES (1,1,1,'IRR/STS/001/AW22',8,'active',1,1,1,1,2,NULL),(2,1,4,'IRR/STI/002/AW22',8,'active',4,1,8,1,1,NULL),(3,2,7,'IRL/ZTS/003/AW22',8,'active',3,7,2,1,9,NULL),(4,1,10,'IRR/HJO/005/AW22',8,'active',1,4,1,1,3,NULL),(5,1,6,'IRR/CMI/004/AW22',8,'active',1,6,1,1,10,NULL),(6,1,5,'IRR/SAM/006/AW22',8,'deactivated',4,2,1,1,4,NULL),(7,1,2,'IRR/NSI/007/AW21',6,'deactivated',1,3,2,1,9,NULL),(8,1,3,'IRR/SHC/008/AW22',8,'active',4,1,1,1,2,NULL),(9,2,8,'IRL/HEM/010/AW22',8,'active',1,8,8,1,7,15),(10,1,9,'IRR/ADG/012/SS22',7,'on hold',1,1,1,1,1,NULL);
 /*!40000 ALTER TABLE `contracts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -438,7 +453,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,'2021-10-18 01:25:52'),(2,2,'2021-10-18 01:25:52'),(3,3,'2021-10-18 01:25:52'),(4,4,'2021-10-18 01:25:52'),(5,5,'2021-10-18 01:25:52'),(6,6,'2021-10-18 01:25:52'),(7,1,'2021-10-18 01:25:52'),(8,1,'2021-10-18 01:25:52'),(9,5,'2021-10-18 01:25:52');
+INSERT INTO `orders` VALUES (1,1,'2021-10-20 18:45:20'),(2,2,'2021-10-20 18:45:20'),(3,3,'2021-10-20 18:45:20'),(4,4,'2021-10-20 18:45:20'),(5,5,'2021-10-20 18:45:20'),(6,6,'2021-10-20 18:45:20'),(7,1,'2021-10-20 18:45:20'),(8,1,'2021-10-20 18:45:20'),(9,5,'2021-10-20 18:45:20');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -450,11 +465,13 @@ DROP TABLE IF EXISTS `orders_products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orders_products` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `order_id` bigint unsigned NOT NULL,
   `style_no_id` varchar(255) NOT NULL,
   `qty_share_to_ship_by_route` int unsigned NOT NULL DEFAULT '100',
   `transportation_route_id` int unsigned NOT NULL,
   `order_amount` decimal(12,2) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `index_orders_products_order_amount` (`order_amount`),
   KEY `index_orders_products_order_id_currency_id` (`order_id`,`style_no_id`,`order_amount`),
   KEY `fk_orders_products_style_no_id` (`style_no_id`),
@@ -462,7 +479,7 @@ CREATE TABLE `orders_products` (
   CONSTRAINT `fk_orders_products_order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   CONSTRAINT `fk_orders_products_style_no_id` FOREIGN KEY (`style_no_id`) REFERENCES `product_styles` (`style_no`),
   CONSTRAINT `fk_orders_products_trans_route` FOREIGN KEY (`transportation_route_id`) REFERENCES `transportation_routes` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -471,7 +488,7 @@ CREATE TABLE `orders_products` (
 
 LOCK TABLES `orders_products` WRITE;
 /*!40000 ALTER TABLE `orders_products` DISABLE KEYS */;
-INSERT INTO `orders_products` VALUES (5,'MK9F4278',70,4,188434.65),(5,'MK9F4278',30,5,80757.71),(3,'MJ9L9399',100,8,420675.20),(3,'MP3L9402',100,8,231714.00),(1,'GP2K3800',60,1,42227.22),(1,'GP2K3800',40,2,28151.48),(2,'LT4R3400',80,1,13211.92),(2,'LT4R3400',20,3,3302.98),(2,'MK5R3499',70,1,35392.64),(2,'MK5R3499',30,6,15168.28),(7,'MO3J4828',100,3,21277.08),(6,'LE9I8308',100,7,25447.40),(4,'LD3O4901',100,7,630790.44),(4,'LP2H6255',100,7,513021.60);
+INSERT INTO `orders_products` VALUES (1,5,'MK9F4278',70,4,188434.65),(2,5,'MK9F4278',30,5,80757.71),(3,3,'MJ9L9399',100,8,420675.20),(4,3,'MP3L9402',100,8,231714.00),(5,1,'GP2K3800',60,1,42227.22),(6,1,'GP2K3800',40,2,28151.48),(7,2,'LT4R3400',80,1,13211.92),(8,2,'LT4R3400',20,3,3302.98),(9,2,'MK5R3499',70,1,35392.64),(10,2,'MK5R3499',30,6,15168.28),(11,7,'MO3J4828',100,3,21277.08),(12,6,'LE9I8308',100,7,25447.40),(13,4,'LD3O4901',100,7,630790.44),(14,4,'LP2H6255',100,7,513021.60);
 /*!40000 ALTER TABLE `orders_products` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -483,11 +500,27 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'REAL_AS_FLOAT,PIPES_AS_CONCAT,ANSI_QUOTES,IGNORE_SPACE,ONLY_FULL_GROUP_BY,ANSI' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `calc_amount` BEFORE INSERT ON `orders_products` FOR EACH ROW BEGIN
-    SET NEW.order_amount =
-        (SELECT ps.price_value FROM product_styles AS ps WHERE ps.style_no = NEW.style_no_id LIMIT 1) *
-        (SELECT ps.ordered_qty FROM product_styles AS ps WHERE ps.style_no = NEW.style_no_id LIMIT 1) *
-        (NEW.qty_share_to_ship_by_route / 100);
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `check_insert_calc_amount` BEFORE INSERT ON `orders_products` FOR EACH ROW BEGIN
+    DECLARE alias_id_from_product_styles BIGINT UNSIGNED;
+    DECLARE alias_id_from_order BIGINT UNSIGNED;
+
+    SET alias_id_from_product_styles = (SELECT prod_st.supplier_alias_id
+                                        FROM product_styles prod_st WHERE NEW.style_no_id = prod_st.style_no);
+    SET alias_id_from_order = (SELECT alias.id
+                                FROM orders
+                                JOIN contracts con ON orders.contract_no_id = con.id
+                                JOIN suppliers_leg_entities sle on con.supplier_leg_entity_id = sle.id
+                                JOIN alias_suppliers alias on sle.entity_alias_id = alias.id
+                                WHERE orders.id = NEW.order_id);
+    IF alias_id_from_product_styles = alias_id_from_order
+        THEN
+            SET NEW.order_amount =
+                (SELECT ps.price_value FROM product_styles AS ps WHERE ps.style_no = NEW.style_no_id LIMIT 1) *
+                (SELECT ps.ordered_qty FROM product_styles AS ps WHERE ps.style_no = NEW.style_no_id LIMIT 1) *
+                (NEW.qty_share_to_ship_by_route / 100);
+        ELSE
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Alias of supplier id set in style does not match alias of supplier set in contract assigned to selected order number.';
+    END IF;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -588,15 +621,15 @@ DROP TABLE IF EXISTS `payments`;
 CREATE TABLE `payments` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `payment_type` enum('advance payment','before shipment','postpayment_1','postpayment_2','lc') DEFAULT NULL,
-  `order_id` bigint unsigned NOT NULL,
+  `orders_products_id` bigint unsigned NOT NULL,
   `payment_amount_suggested` decimal(12,2) unsigned DEFAULT NULL,
   `payment_amount_user` decimal(12,2) unsigned DEFAULT NULL,
   `status` enum('created','approved','remitted','cancelled') DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `index_of_payments` (`order_id`,`status`,`payment_amount_user`),
-  CONSTRAINT `fk_payments_order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `index_of_payments` (`orders_products_id`,`status`,`payment_amount_user`),
+  CONSTRAINT `fk_payments_order_id` FOREIGN KEY (`orders_products_id`) REFERENCES `orders_products` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -605,7 +638,7 @@ CREATE TABLE `payments` (
 
 LOCK TABLES `payments` WRITE;
 /*!40000 ALTER TABLE `payments` DISABLE KEYS */;
-INSERT INTO `payments` VALUES (1,'advance payment',1,14075.74,0.00,'approved','2021-10-18 01:25:52'),(2,'before shipment',1,35189.35,0.00,'created','2021-10-18 01:25:52'),(3,'advance payment',7,4255.42,0.00,'created','2021-10-18 01:25:52'),(4,'advance payment',2,6707.58,0.00,'created','2021-10-18 01:25:52'),(5,'advance payment',3,195716.76,0.00,'approved','2021-10-18 01:25:52'),(6,'before shipment',3,391433.52,0.00,'approved','2021-10-18 01:25:52'),(7,'postpayment_1',3,65238.92,0.00,'created','2021-10-18 01:25:52'),(8,'before shipment',4,571906.02,0.00,'created','2021-10-18 01:25:52'),(9,'postpayment_1',5,215353.89,0.00,'approved','2021-10-18 01:25:52'),(10,'postpayment_2',5,53838.47,0.00,'created','2021-10-18 01:25:52');
+INSERT INTO `payments` VALUES (1,'advance payment',7,1321.19,0.00,'remitted','2021-10-20 18:45:20'),(2,'advance payment',8,330.30,0.00,'remitted','2021-10-20 18:45:20'),(3,'advance payment',9,3539.26,0.00,'remitted','2021-10-20 18:45:20'),(4,'advance payment',10,1516.83,0.00,'remitted','2021-10-20 18:45:20'),(5,'before shipment',7,7927.15,0.00,'remitted','2021-10-20 18:45:20'),(6,'before shipment',8,1981.79,0.00,'remitted','2021-10-20 18:45:20'),(7,'before shipment',9,21235.58,0.00,'remitted','2021-10-20 18:45:20'),(8,'before shipment',10,9100.97,0.00,'remitted','2021-10-20 18:45:20'),(9,'advance payment',11,4255.42,0.00,'remitted','2021-10-20 18:45:20'),(10,'before shipment',11,10638.54,0.00,'remitted','2021-10-20 18:45:20'),(11,'postpayment_1',11,6383.12,0.00,'remitted','2021-10-20 18:45:20'),(12,'advance payment',12,2544.74,0.00,'remitted','2021-10-20 18:45:20'),(13,'postpayment_1',12,12723.70,0.00,'remitted','2021-10-20 18:45:20'),(14,'advance payment',3,126202.56,0.00,'remitted','2021-10-20 18:45:20'),(15,'advance payment',5,8445.44,0.00,'remitted','2021-10-20 18:45:20');
 /*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -620,40 +653,69 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `calc_check_payment` BEFORE INSERT ON `payments` FOR EACH ROW BEGIN
     DECLARE p_type VARCHAR(255);
     DECLARE amount_share_for_payment INT;
-    DECLARE order_calc_amount DECIMAL(12,2);
+    DECLARE order_calc_amount DECIMAL(12,2) DEFAULT 0;
     SET p_type = NEW.payment_type;
-    SET order_calc_amount = (SELECT sum(order_amount)
-                            FROM orders_products op WHERE op.order_id = NEW.order_id);
-
+    SET order_calc_amount = (SELECT sum(op.order_amount)
+                            FROM orders_products op WHERE op.id = NEW.orders_products_id);
     CASE p_type
         WHEN 'advance payment' THEN
-        SET amount_share_for_payment = (SELECT pt.advance_payment_val
-                                FROM orders
-                                JOIN contracts contr on orders.contract_no_id = contr.id
-                                JOIN payment_terms pt on contr.payment_terms_id = pt.id
-                                WHERE NEW.order_id = orders.id);
-        WHEN 'before shipment' THEN
-        SET amount_share_for_payment = (SELECT pt.before_shpmt_payment_val
-                                FROM orders
-                                JOIN contracts contr on orders.contract_no_id = contr.id
-                                JOIN payment_terms pt on contr.payment_terms_id = pt.id
-                                WHERE NEW.order_id = orders.id);
-        WHEN 'postpayment_1' THEN
-        SET amount_share_for_payment = (SELECT pt.postpayment_1_val
-                                FROM orders
-                                JOIN contracts contr on orders.contract_no_id = contr.id
-                                JOIN payment_terms pt on contr.payment_terms_id = pt.id
-                                WHERE NEW.order_id = orders.id);
-        WHEN 'postpayment_2' THEN
-        SET amount_share_for_payment = (SELECT pt.postpayment_2_val
-                                FROM orders
-                                JOIN contracts contr on orders.contract_no_id = contr.id
-                                JOIN payment_terms pt on contr.payment_terms_id = pt.id
-                                WHERE NEW.order_id = orders.id);
-    END CASE;
-    SET NEW.payment_amount_suggested = order_calc_amount * (amount_share_for_payment/100);
+        SET amount_share_for_payment = (SELECT pt.advance_payment_val FROM orders_products op
+                                        JOIN orders o ON op.order_id = o.id
+                                        JOIN contracts con ON o.contract_no_id = con.id
+                                        JOIN payment_terms pt ON con.payment_terms_id = pt.id
+                                        WHERE op.id = NEW.orders_products_id);
 
+        WHEN 'before shipment' THEN
+        SET amount_share_for_payment = (SELECT pt.before_shpmt_payment_val FROM orders_products op
+                                        JOIN orders o ON op.order_id = o.id
+                                        JOIN contracts con ON o.contract_no_id = con.id
+                                        JOIN payment_terms pt ON con.payment_terms_id = pt.id
+                                        WHERE op.id = NEW.orders_products_id);
+        WHEN 'postpayment_1' THEN
+        SET amount_share_for_payment = (SELECT pt.postpayment_1_val FROM orders_products op
+                                        JOIN orders o ON op.order_id = o.id
+                                        JOIN contracts con ON o.contract_no_id = con.id
+                                        JOIN payment_terms pt ON con.payment_terms_id = pt.id
+                                        WHERE op.id = NEW.orders_products_id);
+        WHEN 'postpayment_2' THEN
+        SET amount_share_for_payment = (SELECT pt.postpayment_2_val FROM orders_products op
+                                        JOIN orders o ON op.order_id = o.id
+                                        JOIN contracts con ON o.contract_no_id = con.id
+                                        JOIN payment_terms pt ON con.payment_terms_id = pt.id
+                                        WHERE op.id = NEW.orders_products_id);
+    END CASE;
+    IF amount_share_for_payment != 0 OR amount_share_for_payment IS NOT NULL THEN
+        SET NEW.payment_amount_suggested = order_calc_amount * (amount_share_for_payment/100);
+    ELSE
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'This type of payment is not stipulated by the contract payment terms.';
+    END IF;
 END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'REAL_AS_FLOAT,PIPES_AS_CONCAT,ANSI_QUOTES,IGNORE_SPACE,ONLY_FULL_GROUP_BY,ANSI' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `check_style_payment_account` BEFORE INSERT ON `payments` FOR EACH ROW BEGIN
+        DECLARE order_amount DECIMAL(12,2) DEFAULT 0;
+        DECLARE already_paid DECIMAL(12,2) DEFAULT 0;
+
+        SET order_amount = (SELECT sum(op.order_amount)
+                            FROM orders_products op WHERE op.id = NEW.orders_products_id);
+        SET already_paid = (SELECT SUM(payment_amount_suggested)
+                            FROM payments WHERE orders_products_id = NEW.orders_products_id);
+        IF order_amount - already_paid <= 0 THEN
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'This style under indicated order has been fully paid to supplier.';
+        END IF;
+    END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -787,7 +849,7 @@ CREATE TABLE `product_styles` (
 
 LOCK TABLES `product_styles` WRITE;
 /*!40000 ALTER TABLE `product_styles` DISABLE KEYS */;
-INSERT INTO `product_styles` VALUES ('GP2K3800',8,1,7.42,1,9485,6,8,2,7,1,'2021-10-18 01:25:52','2021-10-18 01:25:52'),('LD3O4901',8,9,34.23,1,18428,9,2,8,6,7,'2021-10-18 01:25:52','2021-10-18 01:25:52'),('LE9I8308',8,4,4.73,4,5380,8,8,6,2,8,'2021-10-18 01:25:52','2021-10-18 01:25:52'),('LP2H6255',8,9,23.49,1,21840,9,1,9,10,7,'2021-10-18 01:25:52','2021-10-18 01:25:52'),('LT4R3400',8,1,4.78,4,3455,6,8,2,2,1,'2021-10-18 01:25:52','2021-10-18 01:25:52'),('MJ9L9399',8,6,12.92,3,32560,5,7,2,6,6,'2021-10-18 01:25:52','2021-10-18 01:25:52'),('MK5R3499',8,1,3.48,4,14529,8,10,7,1,2,'2021-10-18 01:25:52','2021-10-18 01:25:52'),('MK9F4278',8,5,5.93,1,45395,2,3,3,1,5,'2021-10-18 01:25:52','2021-10-18 01:25:52'),('MO3J4828',8,1,5.94,1,3582,6,9,6,4,1,'2021-10-18 01:25:52','2021-10-18 01:25:52'),('MP3L9402',8,6,9.45,3,24520,5,7,4,5,6,'2021-10-18 01:25:52','2021-10-18 01:25:52');
+INSERT INTO `product_styles` VALUES ('GP2K3800',8,1,7.42,1,9485,6,8,2,7,1,'2021-10-20 18:45:20','2021-10-20 18:45:20'),('LD3O4901',8,9,34.23,1,18428,9,2,8,6,7,'2021-10-20 18:45:20','2021-10-20 18:45:20'),('LE9I8308',8,4,4.73,4,5380,8,8,6,2,8,'2021-10-20 18:45:20','2021-10-20 18:45:20'),('LP2H6255',8,9,23.49,1,21840,9,1,9,10,7,'2021-10-20 18:45:20','2021-10-20 18:45:20'),('LT4R3400',8,1,4.78,4,3455,6,8,2,2,1,'2021-10-20 18:45:20','2021-10-20 18:45:20'),('MJ9L9399',8,6,12.92,3,32560,5,7,2,6,6,'2021-10-20 18:45:20','2021-10-20 18:45:20'),('MK5R3499',8,1,3.48,4,14529,8,10,7,1,2,'2021-10-20 18:45:20','2021-10-20 18:45:20'),('MK9F4278',8,5,5.93,1,45395,2,3,3,1,5,'2021-10-20 18:45:20','2021-10-20 18:45:20'),('MO3J4828',8,1,5.94,1,3582,6,9,6,4,1,'2021-10-20 18:45:20','2021-10-20 18:45:20'),('MP3L9402',8,6,9.45,3,24520,5,7,4,5,6,'2021-10-20 18:45:20','2021-10-20 18:45:20');
 /*!40000 ALTER TABLE `product_styles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -826,7 +888,7 @@ CREATE TABLE `production_facilities` (
 
 LOCK TABLES `production_facilities` WRITE;
 /*!40000 ALTER TABLE `production_facilities` DISABLE KEYS */;
-INSERT INTO `production_facilities` VALUES (1,'Xinshuai Zhenfeng Textile Co. Ltd','Bingfengdadao 34, Shanghai, China',1,1,'Approved','2020-10-02 21:00:00',1,NULL),(2,'Shanghai Textiles Industries Co. Ltd','Xuehuadadao 23, Shanghai, China',1,1,'Approved','2020-12-30 21:00:00',1,NULL),(3,'Ningbo Seduno Top Sewing Co. Ltd','Shijiedadao 84, Ningbo, China',3,2,'Approved','2018-10-11 21:00:00',3,NULL),(4,'Minar Woven Manufacturing Co. Ltd','Queens Street 10, Chittagong, Bangladesh',8,5,'Inspection','2021-10-16 21:00:00',6,'Problems with quality system, 6% defection ratio in the last batch. Need to reinspect in-line quality system'),(5,'Minar Excellent Sewing Industries Co. Ltd','Dhaka-Bangalore National Highway 456 km, building 1, Dhaka, Bangladesh',8,5,'Rejected','2021-09-29 21:00:00',6,'35% of SS21 bulk orders with major defects, 25% of retail returns. Need to go through inspection.'),(6,'Zeria Tekstil Sanayi ve Dİs Ticaret Ltd Sti','Esenler Sk 1, Istanbul, Turkey',9,6,'Inspection','2021-10-08 21:00:00',7,'Good quality PPS. Inspection planned on Nov 1, 2021'),(7,'Xiamen H&J Outerwear Manufacturing Co. Ltd','Xihulu 29, Xiamen, China',4,9,'Approved','2019-12-30 21:00:00',4,NULL),(8,'Haochi Huluobo Indusrial Co. Ltd. ','Xinguolu 65, Shenzhen, China',2,4,'Approved','2016-01-30 21:00:00',2,NULL),(9,'Ssang Yong Heung Textile Industries Co., Ltd','Minhaseung 34, Busan, Korea',10,7,'Approved','2021-04-19 21:00:00',8,NULL),(10,'Istanbul tekstil üretim şirketi','Sarhoş rusların sokağı 10, Instanbul, Turkey',9,6,'Approved','2020-08-18 21:00:00',7,NULL);
+INSERT INTO `production_facilities` VALUES (1,'Xinshuai Zhenfeng Textile Co. Ltd','Bingfengdadao 34, Shanghai, China',1,1,'Approved','2020-10-02 21:00:00',1,NULL),(2,'Shanghai Textiles Industries Co. Ltd','Xuehuadadao 23, Shanghai, China',1,1,'Approved','2020-12-30 21:00:00',1,NULL),(3,'Ningbo Seduno Top Sewing Co. Ltd','Shijiedadao 84, Ningbo, China',3,2,'Approved','2018-10-11 21:00:00',3,NULL),(4,'Minar Woven Manufacturing Co. Ltd','Queens Street 10, Chittagong, Bangladesh',8,5,'Inspection','2021-10-16 21:00:00',6,'Problems with quality system, 6% defection ratio in the last batch. Need to reinspect in-line quality system'),(5,'Minar Excellent Sewing Industries Co. Ltd','Dhaka-Bangalore National Highway 456 km, building 1, Dhaka, Bangladesh',8,5,'Rejected','2021-09-29 21:00:00',6,'35% of SS21 bulk orders with major defects, 25% of retail returns. Need to go through inspection.'),(6,'Zeria Tekstil Sanayi ve Dİs Ticaret Ltd Sti','Esenler Sk 1, Istanbul, Turkey',9,6,'Inspection','2021-10-08 21:00:00',7,'Good quality PPS. Inspection planned on Nov 1, 2021'),(7,'Xiamen H&J Outerwear Manufacturing Co. Ltd','Xihulu 29, Xiamen, China',4,9,'Approved','2019-12-30 21:00:00',4,NULL),(8,'Haochi Huluobo Indusrial Co. Ltd.','Xinguolu 65, Shenzhen, China',2,4,'Approved','2016-01-30 21:00:00',2,NULL),(9,'Ssang Yong Heung Textile Industries Co., Ltd','Minhaseung 34, Busan, Korea',10,7,'Approved','2021-04-19 21:00:00',8,NULL),(10,'Istanbul tekstil üretim şirketi','Sarhoş rusların sokağı 10, Instanbul, Turkey',9,6,'Approved','2020-08-18 21:00:00',7,NULL);
 /*!40000 ALTER TABLE `production_facilities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -941,9 +1003,23 @@ CREATE TABLE `transhipment_hubs` (
 
 LOCK TABLES `transhipment_hubs` WRITE;
 /*!40000 ALTER TABLE `transhipment_hubs` DISABLE KEYS */;
-INSERT INTO `transhipment_hubs` VALUES (1,'HUB Vladivostok',13),(2,'HUB Vostochny',13),(3,'HUB Ust Luga',11),(4,'HUB Shanghai',1),(5,'HUB Busan',10),(6,'HUB Hong Kong',5),(7,'HUB Shenzhen',2),(8,'HUB Chittagong',8),(9,'HUB Moscow',6),(10,'HUB Yekaterinburg',13);
+INSERT INTO `transhipment_hubs` VALUES (1,'HUB Vladivostok',13),(2,'HUB Vostochny',13),(3,'HUB Ust Luga',11),(4,'HUB Shanghai',1),(5,'HUB Busan',10),(6,'HUB Hong Kong',5),(7,'HUB Shenzhen',2),(8,'HUB Chittagong',8),(9,'HUB Moscow',6),(10,'HUB Yekaterinburg',12);
 /*!40000 ALTER TABLE `transhipment_hubs` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `transit_routes_times`
+--
+
+DROP TABLE IF EXISTS `transit_routes_times`;
+/*!50001 DROP VIEW IF EXISTS `transit_routes_times`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `transit_routes_times` AS SELECT 
+ 1 AS `id`,
+ 1 AS `transit_route_name`,
+ 1 AS `transit_time`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `transportation_modes`
@@ -1049,6 +1125,42 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` VALUES (1,'Judy','Dickinson','dickinson.judy','9f0000106ea539eb6bda8cb2f1cd16362ada0dd7','miguel.feil@example.net','deactivated','2000-06-21 07:35:18'),(2,'Jovanny','Smith','jovanny.smith','441cbba5dffcc3e315f1ec8dce33219c0712aa3b','gleichner.nadia@example.net','deactivated','1988-01-30 01:01:26'),(3,'Haylie','Schulist','schulist.haylie','68c7fad6c099ec43912dda581ec48f7c43101ac5','kulas.trenton@example.net','deactivated','2013-01-20 22:55:39'),(4,'Mireya','Hoppe','hoppe.mireya','a606d05710aac2fdbacbf86461174655c5dcdf41','xbeatty@example.net','active','2007-07-07 14:04:29'),(5,'Zap','Rolfson','zrolfson','48477817566966d2f2d111df65d4988d9fd905c9','gthiel@example.com','deactivated','1987-09-28 11:58:26'),(6,'Timur','Murzik','tmurazik','7cac1070c6b7af8ca3f8bcbf3f62d3bafe32be7d','vonrueden.khalil@example.org','active','1978-03-05 20:25:04'),(7,'Jenifer','Weimann','weimann.jenifer','483f264ceb6c81e2d1f615e895aa429cfb3ab7d3','drolfson@example.org','deactivated','1987-07-08 11:22:45'),(8,'Sadye','Schneider','sadye.schneider','e9ff98c447c8fe6331c5ddf7ff8cfb4a991d31e2','eanderson@example.net','deactivated','1977-01-28 15:24:35'),(9,'Natalie','Swift','nswift','5503ff403ff6ca7cec306a6b9652be7d21d3104c','taurean.wisoky@example.org','deactivated','2016-04-25 11:42:33'),(10,'Amira','Schumm','amira.schumm','222c4c8ea342f86c4ce47c063226b0f72cffd7fa','bauch.raven@example.net','active','1978-10-21 17:31:47');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `balance_amount_for_payment`
+--
+
+/*!50001 DROP VIEW IF EXISTS `balance_amount_for_payment`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `balance_amount_for_payment` AS select `op`.`style_no_id` AS `style_number`,sum(distinct `op`.`order_amount`) AS `ordered_amount`,sum(`p`.`payment_amount_suggested`) AS `paid_amount`,(select (sum(distinct `op`.`order_amount`) - sum(`p`.`payment_amount_suggested`))) AS `balance_amount` from (`orders_products` `op` left join `payments` `p` on((`p`.`orders_products_id` = `op`.`id`))) where ((`p`.`status` = 'remitted') or (`p`.`status` = 'approved')) group by `op`.`style_no_id` with rollup order by (select (sum(distinct `op`.`order_amount`) - sum(`p`.`payment_amount_suggested`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `transit_routes_times`
+--
+
+/*!50001 DROP VIEW IF EXISTS `transit_routes_times`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `transit_routes_times` AS select `tr`.`id` AS `id`,concat(`pol`.`name`,' - ',if((`th`.`name` is not null),concat(`th`.`name`,' '),''),if((`tm1`.`trans_mode` is not null),concat('by ',`tm1`.`trans_mode`,' - '),''),`dp`.`name`,if((`tm2`.`trans_mode` is not null),concat(' by ',`tm2`.`trans_mode`),''),if((`tm3`.`trans_mode` is not null),concat(' by ',`tm3`.`trans_mode`),'')) AS `transit_route_name`,`tr`.`transit_time` AS `transit_time` from ((((((`transportation_routes` `tr` left join `ports_of_loading` `pol` on((`tr`.`port_of_loading_id` = `pol`.`id`))) left join `transhipment_hubs` `th` on((`tr`.`trans_hub_id` = `th`.`id`))) left join `transportation_modes` `tm1` on((`tr`.`from_port_to_hub_trans_mode_id` = `tm1`.`id`))) left join `transportation_modes` `tm2` on((`tr`.`from_hub_to_dest_point_trans_mode_id` = `tm2`.`id`))) left join `transportation_modes` `tm3` on((`tr`.`from_port_to_dest_point_trans_mode_id` = `tm3`.`id`))) left join `destination_points` `dp` on((`tr`.`destination_point_id` = `dp`.`id`))) order by `tr`.`id` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1059,4 +1171,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-18  4:36:58
+-- Dump completed on 2021-10-20 21:47:23

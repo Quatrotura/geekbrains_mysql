@@ -3,7 +3,6 @@ CREATE DATABASE IF NOT EXISTS procurement_db;
 
 use procurement_db;
 
--- таблица пользователей базы данных
 DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -20,8 +19,6 @@ CREATE TABLE IF NOT EXISTS users (
 
 );
 
--- таблица стран и городов
-
 DROP TABLE IF EXISTS country_cities;
 CREATE TABLE IF NOT EXISTS country_cities (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -29,11 +26,7 @@ CREATE TABLE IF NOT EXISTS country_cities (
     city VARCHAR(255) NOT NULL,
     KEY index_of_city (city),
     UNIQUE KEY index_of_country_city (country,city)
-    -- составные индексы требуются при составных запросах с AND
-    -- не ставим отдельный индекс на страну, т.к. страна - первая в составном индексе
 );
-
--- таблица псевдонимов поставщиков
 
 DROP TABLE IF EXISTS alias_suppliers;
 CREATE TABLE IF NOT EXISTS alias_suppliers(
@@ -48,8 +41,6 @@ CREATE TABLE IF NOT EXISTS alias_suppliers(
     KEY index_of_alias_suppl_country_city_id (alias_suppl_country_city_id)
 );
 
--- таблица псевдонимов покупателей
-
 DROP TABLE IF EXISTS alias_buyers;
 CREATE TABLE IF NOT EXISTS alias_buyers(
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -62,8 +53,6 @@ CREATE TABLE IF NOT EXISTS alias_buyers(
     KEY index_of_alias_suppl_name (alias_buyer_name),
     KEY index_of_alias_suppl_country_city_id (alias_buyer_country_city_id)
 );
-
--- таблица юридических лиц поставщиков
 
 DROP TABLE IF EXISTS suppliers_leg_entities;
 CREATE TABLE IF NOT EXISTS suppliers_leg_entities(
@@ -88,8 +77,6 @@ CREATE TABLE IF NOT EXISTS suppliers_leg_entities(
     KEY index_of_entity_alias_id(entity_alias_id)
 );
 
--- таблица юридических лиц покупателей
-
 DROP TABLE IF EXISTS buyers_leg_entities;
 CREATE TABLE IF NOT EXISTS buyers_leg_entities(
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -112,8 +99,6 @@ CREATE TABLE IF NOT EXISTS buyers_leg_entities(
     KEY index_of_entity_alias_id(entity_alias_id)
 );
 
--- таблица портов отгрузки
-
 DROP TABLE IF EXISTS ports_of_loading;
 CREATE TABLE IF NOT EXISTS ports_of_loading(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -124,9 +109,6 @@ CREATE TABLE IF NOT EXISTS ports_of_loading(
     REFERENCES country_cities(id)
     --  думаю индексирование делать не обязательно, т.к. таблица не будет большой
 );
-
--- производственные виды продукции
-
 DROP TABLE IF EXISTS production_types;
 CREATE TABLE IF NOT EXISTS production_types(
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -135,8 +117,6 @@ CREATE TABLE IF NOT EXISTS production_types(
 
     UNIQUE index_of_product_types (class, subclass)
 );
-
--- наименования продукции
 
 DROP TABLE IF EXISTS product_descriptions;
 CREATE TABLE IF NOT EXISTS product_descriptions(
@@ -150,17 +130,13 @@ CREATE TABLE IF NOT EXISTS product_descriptions(
     UNIQUE index_of_descr_product_type (description, production_type_id)
 );
 
--- составы продукции
-
 DROP TABLE IF EXISTS product_compositions;
 CREATE TABLE IF NOT EXISTS product_compositions(
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     composition VARCHAR(255) NOT NULL UNIQUE
 );
 
--- список заводов и фабрик
-
-DROP TABLE IF EXISTS production_facilities; 
+DROP TABLE IF EXISTS production_facilities; -- список заводов и фабрик
 CREATE TABLE IF NOT EXISTS production_facilities (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     facility_name VARCHAR(255) NOT NULL,
@@ -186,9 +162,7 @@ CREATE TABLE IF NOT EXISTS production_facilities (
     KEY index_of_alias_suppl_id (alias_suppl_id),
     KEY index_of_status (`status`)
 );
-
 -- данная таблица фиксирует типы доступных производств на определнных фабриках
-
 DROP TABLE IF EXISTS production_facilities_types;
 CREATE TABLE IF NOT EXISTS production_facilities_types (
     production_facility_id BIGINT UNSIGNED NOT NULL,
@@ -200,14 +174,11 @@ CREATE TABLE IF NOT EXISTS production_facilities_types (
     CONSTRAINT fk_prod_fac_type_prod_type_id FOREIGN KEY (production_types_id) REFERENCES production_types(id)
 );
 
--- таблица валют
 DROP TABLE IF EXISTS currencies;
 CREATE TABLE IF NOT EXISTS currencies(
     id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name_acronym CHAR (5) NOT NULL
 );
-
--- таблица валютных обменных курсов
 
 DROP TABLE IF EXISTS currency_exchange_rates;
 CREATE TABLE IF NOT EXISTS currency_exchange_rates(
@@ -231,15 +202,11 @@ CREATE TABLE IF NOT EXISTS currency_exchange_rates(
 
 );
 
--- список коллекций
-
 DROP TABLE IF EXISTS collections;
 CREATE TABLE IF NOT EXISTS collections(
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name CHAR(4) NOT NULL UNIQUE
 );
-
--- список базисов поставки
 
 DROP TABLE IF EXISTS delivery_basis;
 CREATE TABLE IF NOT EXISTS delivery_basis(
@@ -247,17 +214,12 @@ CREATE TABLE IF NOT EXISTS delivery_basis(
     name CHAR(4) NOT NULL
     --  думаю индексирование делать не обязательно, т.к. таблица не будет большой
 );
-
--- список типов платежей
-
 DROP TABLE IF EXISTS payment_modes;
 CREATE TABLE IF NOT EXISTS payment_modes(
     id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name ENUM('T/T', 'L/C', 'mixed') NOT NULL
      --  думаю индексирование делать не обязательно, т.к. таблица не будет большой
 );
-
--- список контрольных точек для совершения платежей (от указанной точки отсчитывается плановая дата оплаты товара)
 DROP TABLE IF EXISTS payment_due_points;
 CREATE TABLE IF NOT EXISTS payment_due_points (
     id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -266,8 +228,6 @@ CREATE TABLE IF NOT EXISTS payment_due_points (
         'planned delivery to final destination',
         'actual delivery to final destination')
 );
-
--- список условий оплат
 
 DROP TABLE IF EXISTS payment_terms;
 CREATE TABLE IF NOT EXISTS payment_terms(
@@ -286,8 +246,6 @@ CREATE TABLE IF NOT EXISTS payment_terms(
     CONSTRAINT fk_payment_terms_due_point_id FOREIGN KEY (payment_due_point_id) REFERENCES payment_due_points(id)
 );
 
--- список складов компании
-
 DROP TABLE IF EXISTS destination_points;
 CREATE TABLE IF NOT EXISTS destination_points(
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -297,9 +255,6 @@ CREATE TABLE IF NOT EXISTS destination_points(
     CONSTRAINT fk_destin_points_country_city_id FOREIGN KEY (country_city_id)
     REFERENCES country_cities(id)
 );
-
--- список хабов для перегрузки товаров (когда один тип доставки меняется на другой, к примеру, море на ж/д)
-
 DROP TABLE IF EXISTS transhipment_hubs;
 CREATE TABLE IF NOT EXISTS transhipment_hubs(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -309,16 +264,12 @@ CREATE TABLE IF NOT EXISTS transhipment_hubs(
     CONSTRAINT fk_trans_hubs_country_city_id FOREIGN KEY (country_city_id)
     REFERENCES country_cities(id)
 );
-
--- список способов доставки товаров
-
 DROP TABLE IF EXISTS transportation_modes;
 CREATE TABLE IF NOT EXISTS transportation_modes(
     id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     trans_mode ENUM('sea', 'air', 'railway', 'truck', 'river')
 );
--- список маршрутов доставки
-
+--
 DROP TABLE IF EXISTS transportation_routes;
 CREATE TABLE IF NOT EXISTS transportation_routes(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -351,9 +302,7 @@ CREATE TABLE IF NOT EXISTS transportation_routes(
 
 );
 
--- список договоров
-
-DROP TABLE IF EXISTS contracts;
+DROP TABLE IF EXISTS contracts; --  контракты
 CREATE TABLE IF NOT EXISTS contracts(
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     buyer_leg_entity_id BIGINT UNSIGNED NOT NULL,
@@ -366,9 +315,7 @@ CREATE TABLE IF NOT EXISTS contracts(
     delivery_basis_id TINYINT UNSIGNED NOT NULL,
     payment_mode_id TINYINT UNSIGNED NOT NULL,
     payment_terms_id INT UNSIGNED NOT NULL,
-    -- destination_points_id BIGINT UNSIGNED NOT NULL,
     vat TINYINT UNSIGNED DEFAULT NULL,
-    -- transportation_routes_id INT UNSIGNED NOT NULL,
 
 UNIQUE index_of_contract_no (contract_no),
 KEY index_of_collection_id(collection_id),
@@ -384,21 +331,16 @@ CONSTRAINT fk_contracts_pol_id FOREIGN KEY (ports_of_loading_id) REFERENCES port
 CONSTRAINT fk_contracts_delivery_basis_id FOREIGN KEY (delivery_basis_id) REFERENCES delivery_basis(id),
 CONSTRAINT fk_contract_payment_mode_id FOREIGN KEY (payment_mode_id) REFERENCES payment_modes(id),
 CONSTRAINT fk_contracts_payment_terms_id FOREIGN KEY (payment_terms_id) REFERENCES payment_terms(id)
--- CONSTRAINT fk_contracts_dest_points_id FOREIGN KEY (destination_points_id) REFERENCES destination_points(id),
--- CONSTRAINT fk_contracts_trans_routes_id FOREIGN KEY (transportation_routes_id) REFERENCES transportation_routes(id)
-); 
 
+);
 
--- статусы платежных реквизитов
-
-DROP TABLE IF EXISTS bank_details_status; 
+DROP TABLE IF EXISTS bank_details_status; -- платежные реквизиты
 CREATE TABLE IF NOT EXISTS bank_details_status(
     id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name ENUM('active', 'deactivated') NOT NULL
 );
 
--- реквизиты для перевода д.с
-DROP TABLE IF EXISTS bank_details; 
+DROP TABLE IF EXISTS bank_details; -- платежные реквизиты
 CREATE TABLE IF NOT EXISTS bank_details(
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     contract_id BIGINT UNSIGNED NOT NULL,
@@ -414,6 +356,7 @@ CREATE TABLE IF NOT EXISTS bank_details(
     status_id TINYINT UNSIGNED NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON update CURRENT_TIMESTAMP,
+    -- потом добавить updated_by, created_by
 
     CONSTRAINT fk_bank_details_contract_id FOREIGN KEY (contract_id) REFERENCES contracts(id),
     CONSTRAINT fk_bank_details_benefic_country_cities_id FOREIGN KEY (benefic_country_city_id) REFERENCES country_cities(id),
@@ -422,12 +365,11 @@ CREATE TABLE IF NOT EXISTS bank_details(
     KEY index_of_contract_id_wh_status (contract_id,status_id)
 );
 
--- список плановых дат поступления товаров в продажу
 DROP TABLE IF EXISTS delivery_instores;
 CREATE TABLE IF NOT EXISTS delivery_instores(
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     collection_id BIGINT UNSIGNED NOT NULL,
-    delivery_no TINYINT UNSIGNED NOT NULL, -- все отгрузки в рамках сезона бьются на поставки для обеспечения такта и укрупнения поставок
+    delivery_no TINYINT UNSIGNED NOT NULL, -- все отгрузки в рамках сезона бьются на поставки для обеспечения такта поставок
     instore TIMESTAMP NOT NULL, -- плановая крайняя дата доставки на полки, от нее обратным счетом считаются все остальные контрольные точки в цепи поставки товара
 
     UNIQUE index_of_coll_del_instore (collection_id, delivery_no, instore),
@@ -436,7 +378,6 @@ CREATE TABLE IF NOT EXISTS delivery_instores(
 
 
 --  таблица с продукцией
-
 DROP TABLE IF EXISTS product_styles;
 CREATE TABLE IF NOT EXISTS product_styles(
     style_no VARCHAR(255) NOT NULL PRIMARY KEY,
@@ -448,6 +389,7 @@ CREATE TABLE IF NOT EXISTS product_styles(
     production_type_id BIGINT UNSIGNED NOT NULL,
     product_description_id BIGINT UNSIGNED NOT NULL,
     product_composition_id BIGINT UNSIGNED NOT NULL,
+    -- media_id BIGINT UNSIGNED NOT NULL UNIQUE,
     delivery_instore_id BIGINT UNSIGNED NOT NULL,
     production_facility_id BIGINT UNSIGNED NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -459,6 +401,7 @@ CREATE TABLE IF NOT EXISTS product_styles(
     CONSTRAINT fk_product_styles_production_type_id FOREIGN KEY (production_type_id) REFERENCES production_types(id),
     CONSTRAINT fk_product_styles_product_descr_id FOREIGN KEY (product_description_id) REFERENCES product_descriptions(id),
     CONSTRAINT fk_product_styles_product_compo_id FOREIGN KEY (product_composition_id) REFERENCES product_compositions(id),
+    -- CONSTRAINT fk_product_styles_media_id FOREIGN KEY (media_id) REFERENCES media(id),
 
     CONSTRAINT fk_product_styles_delivery_instore_id
     FOREIGN KEY (delivery_instore_id) REFERENCES delivery_instores(id),
@@ -467,7 +410,6 @@ CREATE TABLE IF NOT EXISTS product_styles(
     FOREIGN KEY (production_facility_id) REFERENCES production_facilities(id)
 );
 
--- номера заказов с привязкой к договору
 
 DROP TABLE IF EXISTS orders;
 CREATE TABLE IF NOT EXISTS orders(
@@ -477,14 +419,9 @@ CREATE TABLE IF NOT EXISTS orders(
     KEY index_of_collection_suppl_alias_contract (contract_no_id),
     CONSTRAINT fk_orders_contract_no_id FOREIGN KEY (contract_no_id) REFERENCES contracts(id)
 );
-
-
--- список заказов с добавленными моделям продкции
--- также тут заказ модели может делиться на несколько заказов,
--- если модель надо отгружать различными маршрутами
--- в таком случае по модели указывается доля кол-ва отгружаемого по указанному маршруту
 DROP TABLE IF EXISTS orders_products;
 CREATE TABLE IF NOT EXISTS orders_products(
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     order_id BIGINT UNSIGNED NOT NULL,
     style_no_id VARCHAR(255) NOT NULL,
     qty_share_to_ship_by_route INT UNSIGNED NOT NULL DEFAULT 100,
@@ -498,20 +435,19 @@ CREATE TABLE IF NOT EXISTS orders_products(
     CONSTRAINT fk_orders_products_style_no_id FOREIGN KEY (style_no_id) REFERENCES product_styles(style_no),
     CONSTRAINT fk_orders_products_trans_route FOREIGN KEY  (transportation_route_id) REFERENCES transportation_routes(id)
 );
-
--- список оплат
-
 DROP TABLE IF EXISTS payments;
 CREATE TABLE IF NOT EXISTS payments(
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     payment_type ENUM ('advance payment', 'before shipment', 'postpayment_1', 'postpayment_2', 'lc'),
-    order_id BIGINT UNSIGNED NOT NULL, -- fk
+    orders_products_id BIGINT UNSIGNED NOT NULL, -- fk
     payment_amount_suggested DECIMAL(12,2) UNSIGNED,
     payment_amount_user DECIMAL(12,2) UNSIGNED,
     status ENUM ('created', 'approved', 'remitted', 'cancelled'),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    KEY index_of_payments (order_id, status, payment_amount_user),
-    CONSTRAINT fk_payments_order_id FOREIGN KEY (order_id) REFERENCES orders(id)
-
+    KEY index_of_payments (orders_products_id, status, payment_amount_user),
+    CONSTRAINT fk_payments_order_id FOREIGN KEY (orders_products_id) REFERENCES orders_products(id)
 );
+
+
+

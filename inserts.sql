@@ -20,11 +20,12 @@ INSERT INTO country_cities(country,city) VALUES
 	('Bangladesh', 'Chittagong'),
 	('Turkey', 'Istambul'),
 	('Korea', 'Busan'),
-	('Russia', 'Saint Petersburg'),
-	('Russia', 'Yekaterinburg'),
-	('Russia', 'Vladivostok'),
-	('Russia', 'Novosibirsk');
+    ('Russia', 'Saint Petersburg'),
+    ('Russia', 'Yekaterinburg'),
+    ('Russia', 'Vladivostok'),
+    ('Russia', 'Novosibirsk');
 
+SELECT * FROM country_cities;
 INSERT INTO alias_suppliers(alias_suppl_name, alias_suppl_country_city_id) VALUES
 	('Shanghai Textiles', 1),
 	('Ningbo Supreme', 3),
@@ -63,7 +64,6 @@ INSERT INTO suppliers_leg_entities VALUES
 (NULL, 'H&J Outerwear Apparels Co. Ltd', 3747499384,
  'Xihulu 29, Xiamen, China', 'Xihulu 29, Xiamen, China', 4, 9);
 
-
 INSERT INTO buyers_leg_entities VALUES
 (NULL, 'Inditex Retail Solutions Rus Co., Ltd.', 481983947, 'ulitsa Yakimanka 31, Moscow, Russia', 'Presnenskay Naberezhnaya 10, Blok C, etazh 35, Moscow, Russia', 6, 1),
 (NULL, 'Inditex Logistcs Services Rus Co. Ltd.', 481983384, 'Promyshlenny Proezd 485, Moscow, Russia', 'Promyshlenny Proezd 485, Moscow, Russia', 6, 2);
@@ -89,6 +89,8 @@ INSERT INTO production_types VALUES
 (NULL, 'WOVEN', 'SHORTS'),
 (NULL, 'OUTERWEAR', 'PADDED JACKETS'),
 (NULL, 'OUTERWEAR', 'WINDJACKETS');
+
+SELECT * FROM production_types ORDER BY id;
 
 INSERT INTO product_descriptions VALUES
 (NULL, 'female padded jacket with hydrophobic coating', 9),
@@ -122,7 +124,7 @@ INSERT INTO production_facilities VALUES
 (NULL, 'Minar Excellent Sewing Industries Co. Ltd', 'Dhaka-Bangalore National Highway 456 km, building 1, Dhaka, Bangladesh', 8, 5, 'Rejected', '2021-09-30', 6, '35% of SS21 bulk orders with major defects, 25% of retail returns. Need to go through inspection.'),
 (NULL, 'Zeria Tekstil Sanayi ve Dİs Ticaret Ltd Sti', 'Esenler Sk 1, Istanbul, Turkey', 9, 6, 'Inspection', '2021-10-09', 7, 'Good quality PPS. Inspection planned on Nov 1, 2021'),
 (NULL, 'Xiamen H&J Outerwear Manufacturing Co. Ltd', 'Xihulu 29, Xiamen, China', 4, 9, 'Approved', '2019-12-31', 4, null),
-(NULL, 'Haochi Huluobo Indusrial Co. Ltd. ', 'Xinguolu 65, Shenzhen, China',2, 4, 'Approved', '2016-01-31', 2, null),
+(NULL, 'Haochi Huluobo Indusrial Co. Ltd.', 'Xinguolu 65, Shenzhen, China',2, 4, 'Approved', '2016-01-31', 2, null),
 (NULL, 'Ssang Yong Heung Textile Industries Co., Ltd', 'Minhaseung 34, Busan, Korea', 10, 7, 'Approved', '2021-04-20', 8, null),
 (NULL, 'Istanbul tekstil üretim şirketi', 'Sarhoş rusların sokağı 10, Instanbul, Turkey', 9, 6, 'Approved', '2020-08-19', 7, null);
 
@@ -231,7 +233,7 @@ INSERT INTO transhipment_hubs VALUES
 (NULL, 'HUB Shenzhen', 2),
 (NULL, 'HUB Chittagong', 8),
 (NULL, 'HUB Moscow', 6),
-(NULL, 'HUB Yekaterinburg', 13);
+(NULL, 'HUB Yekaterinburg', 12);
 
 INSERT INTO transportation_modes (trans_mode) VALUES
 ('sea'),
@@ -258,19 +260,18 @@ INSERT INTO contracts VALUES
 (NULL, 2, 7, 'IRL/ZTS/003/AW22', 8, 'active', 3, 7, 2, 1, 9, NULL),
 (NULL, 1, 10, 'IRR/HJO/005/AW22', 8, 'active', 1, 4, 1, 1, 3, NULL),
 (NULL, 1, 6, 'IRR/CMI/004/AW22', 8, 'active', 1, 6, 1, 1, 10, NULL),
-(NULL, 1, 5, 'IRR/SAM/006/AW22', 8, 'active', 4, 2, 1, 1, 4, NULL),
+(NULL, 1, 5, 'IRR/SAM/006/AW22', 8, 'deactivated', 4, 2, 1, 1, 4, NULL),
 (NULL, 1, 2, 'IRR/NSI/007/AW21', 6, 'deactivated', 1, 3, 2, 1, 9, NULL),
 (NULL, 1, 3, 'IRR/SHC/008/AW22', 8, 'active', 4, 1, 1, 1, 2, NULL),
 (NULL, 2, 8, 'IRL/HEM/010/AW22', 8, 'active', 1, 8, 8, 1, 7, 15),
 (NULL, 1, 9, 'IRR/ADG/012/SS22', 7, 'on hold', 1, 1, 1, 1, 1, NULL);
 
-INSERT INTO bank_details_status VALUES
-(NULL,'active'),
-(NULL, 'deactivated');
+INSERT INTO bank_details_status (name) VALUES
+    ('active'),
+    ('deactivated');
 
 INSERT INTO bank_details VALUES
-(NULL, 1, 'Shanghai Textiles Supplies Co. Ltd.', 'Mainstreet 2, Road Town, British Virgin Islands', 7, 
-'Virgin Trust Bank BVI', 'Mainstreet 5, Road Town, British Virgin Islands',
+(NULL, 1, 'Shanghai Textiles Supplies Co. Ltd.', 'Mainstreet 2, Road Town, British Virgin Islands', 7, 'Virgin Trust Bank BVI', 'Mainstreet 5, Road Town, British Virgin Islands',
  7, 38585904, 3040053, 'VTBBVI', 1, NOW(), NOW()),
 (NULL, 2, 'Shanghai Trading I&E Co. Ltd', 'Xuehuadadao 23, Shanghai, China', 1, 'Construction Bank of China', 'Liujielu 34, Shanghai, China',
  1, 90394984, 00309393, 'CBHSWF', 1, NOW(), NOW()),
@@ -343,13 +344,23 @@ INSERT INTO orders_products (order_id, style_no_id, qty_share_to_ship_by_route, 
 (4, 'LP2H6255', 100, 7);
 
 INSERT INTO payments VALUES
-(NULL, 'advance payment', 1, 0, 0, 'approved', now()),
-(NULL, 'before shipment', 1, 0, 0, 'created', now()),
-(NULL, 'advance payment', 7, 0, 0, 'created', now()),
-(NULL, 'advance payment', 2, 0, 0, 'created', now()),
-(NULL, 'advance payment', 3, 0, 0, 'approved', now()),
-(NULL, 'before shipment', 3, 0, 0, 'approved', now()),
-(NULL, 'postpayment_1', 3, 0, 0, 'created', now()),
-(NULL, 'before shipment', 4, 0, 0, 'created', now()),
-(NULL, 'postpayment_1', 5, 0, 0, 'approved', now()),
-(NULL, 'postpayment_2', 5, 0, 0, 'created', now());
+(NULL, 'advance payment', 7, 0, 0, 'remitted', now()),
+(NULL, 'advance payment', 8, 0, 0, 'remitted', now()),
+(NULL, 'advance payment', 9, 0, 0, 'remitted', now()),
+(NULL, 'advance payment', 10, 0, 0, 'remitted', now()),
+(NULL, 'before shipment', 7, 0, 0, 'remitted', now()),
+(NULL, 'before shipment', 8, 0, 0, 'remitted', now()),
+(NULL, 'before shipment', 9, 0, 0, 'remitted', now()),
+(NULL, 'before shipment', 10, 0, 0, 'remitted', now()),
+(NULL, 'advance payment', 11, 0, 0, 'remitted', now()),
+(NULL, 'before shipment', 11, 0, 0, 'remitted', now()),
+(NULL, 'postpayment_1', 11, 0, 0, 'remitted', now()),
+(NULL, 'advance payment', 12, 0, 0, 'remitted', now()),
+(NULL, 'postpayment_1', 12, 0, 0, 'remitted', now()),
+(NULL, 'advance payment', 3, 0, 0, 'remitted', now()),
+(NULL, 'advance payment', 5, 0, 0, 'remitted', now());
+
+
+
+
+
